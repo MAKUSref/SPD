@@ -1,0 +1,23 @@
+@import '../../../style/index.scss';
+
+.counter-plus-one {
+  display: none;
+  font-size: 26px;
+  color: $primary-4;
+}
+
+.counter-plus-one.active {
+  display: inline;
+  position: absolute;
+  animation: plusOne linear .6s forwards;
+}
+
+@keyframes plusOne {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, -200px);
+  }
+}

@@ -1,0 +1,8 @@
+@import '../../style/index.scss';
+
+$paddingX: 12px;
+
+.page-container {
+  padding-right: $paddingX;
+  padding-left: $paddingX;
+}

@@ -1,0 +1,15 @@
+@import '../../style/index.scss';
+
+
+.counter-container {
+  .counter {
+    font-size: 42px;
+    padding: 10px 0;
+    font-weight: bold;
+    color: $primary-3;
+  }
+
+  .drink-btn-container {
+    padding-top: 10px;
+  }
+}

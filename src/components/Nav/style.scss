@@ -1,0 +1,24 @@
+@import '../../style/index.scss';
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $neutral-3;
+  display: flex;
+  justify-content: space-around;
+  color: $neutral-9;
+  padding: 8px 0;
+  // position: relative;
+
+  .nav-item {
+    .nav-item--home {
+      padding: 12px;
+      position: absolute;
+      background-color: $primary-4;
+      bottom: 100%;
+      transform: translate(-50%, 70%);
+    }
+  }
+}

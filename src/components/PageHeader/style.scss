@@ -1,0 +1,17 @@
+@import '../../style/index.scss';
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+
+  .title {
+    color: $neutral-9;
+    font-size: 20px;
+  }
+}

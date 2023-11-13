@@ -1,0 +1,21 @@
+@import '../../style/index.scss';
+
+.drink-btn {
+  background-color: $neutral-3;
+  color: $neutral-9;
+  border: solid $neutral-4 10px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 50%;
+  padding: 20px;
+  width: 160px;
+  height: 160px;
+  user-select: none;
+  transition: all ease-out .4s;
+}
+
+.drink-btn.active {
+  background-color: $neutral-4;
+  border: solid $neutral-5 5px;
+  transition: all ease-out 1s;
+}
