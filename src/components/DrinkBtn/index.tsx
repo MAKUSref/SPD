@@ -12,7 +12,7 @@ interface DrinkBtnProps {
 const DrinkBtn = ({ onEndPress, onStartPress, onSuccess }: DrinkBtnProps) => {
   const [activeClassName, setActiveClassName] = useState<"" | "active">("");
 
-  const timeoutId = useRef<number>();
+  const timeoutId = useRef<NodeJS.Timeout>();
 
   const handleTouchStart = () => {
     setActiveClassName("active");
