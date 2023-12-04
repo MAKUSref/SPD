@@ -1,0 +1,33 @@
+@import '../../style/index.scss';
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100dvh;
+
+  .logo-container {
+    max-width: 260px;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    .logo-img {
+      width: 100%;
+    }
+  }
+
+  .name {
+    font-weight: bolder;
+    font-size: 24px;
+    color: $primary-4;
+    text-align: center;
+  }
+
+  .login-btn {
+    background-color: $primary-4;
+  }
+
+  .login-btn:focus {
+    background-color: $primary-3;
+  }
+}

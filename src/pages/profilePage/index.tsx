@@ -4,10 +4,23 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import profileImg from "../../assets/profile.jpg";
 import beerSvg from "../../assets/beer.svg";
-import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
+import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import "./style.scss";
+import { useGetSelfCounterQuery, useGetSelfQuery } from "../../redux/api/userApi";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logOut } from "../../redux/session/sessionSlice";
 
 const ProfilePage = () => {
+  const { data: selfInfo } = useGetSelfQuery();
+  const { data: selfCounter } = useGetSelfCounterQuery();
+  const session = useAppSelector((state) => state.session);
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+  }
+
   return (
     <>
       <PageHeader
@@ -17,7 +30,7 @@ const ProfilePage = () => {
             <IconButton color="inherit" className="edit-btn">
               <CreateRoundedIcon />
             </IconButton>
-            <IconButton color="inherit" className="">
+            <IconButton color="inherit" className="" onClick={handleLogout}>
               <LogoutRoundedIcon />
             </IconButton>
           </div>
@@ -26,19 +39,23 @@ const ProfilePage = () => {
       <div className="profile-page">
         <div className="avatar-container">
           <div className="avatar-bg">
-            <img src={profileImg} />
+            <img src={session.picture ?? profileImg} />
           </div>
         </div>
-        <div className="user-id">#251022</div>
-        <div className="user-name">Jonathan Stevenson</div>
+        <div className="user-id">{selfInfo?.firstName} {selfInfo?.lastName}</div>
+        <div className="user-name">{selfInfo?.username}</div>
         <div className="user-best-scores">
           <div className="single-score">
             <img src={beerSvg} />
-            <span className="number">2</span>
+            <span className="number">{selfCounter ?? 0}</span>
           </div>
           <div className="single-score">
-            <EmojiEventsRoundedIcon color="inherit" fontSize="inherit" className="icon" />
-            <span className="number">2</span>
+            <EmojiEventsRoundedIcon
+              color="inherit"
+              fontSize="inherit"
+              className="icon"
+            />
+            <span className="number">8</span>
           </div>
         </div>
 
@@ -49,7 +66,9 @@ const ProfilePage = () => {
               <span>Best</span>
               <div className="score">
                 <img src={beerSvg} />
-                <span className="score-number" style={{paddingTop: "2px"}}>4</span>
+                <span className="score-number" style={{ paddingTop: "2px" }}>
+                  4
+                </span>
               </div>
             </div>
             <div className="score-row score-sub-row">
@@ -59,14 +78,16 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        <div className="score-container" style={{margin: '20px 0 100px'}}>
+        <div className="score-container" style={{ margin: "20px 0 100px" }}>
           <h4 className="title">Last Month</h4>
           <div className="score-card">
             <div className="score-row">
               <span>Best</span>
               <div className="score">
                 <img src={beerSvg} />
-                <span className="score-number" style={{paddingTop: "2px"}}>7</span>
+                <span className="score-number" style={{ paddingTop: "2px" }}>
+                  7
+                </span>
               </div>
             </div>
             <div className="score-row score-sub-row">

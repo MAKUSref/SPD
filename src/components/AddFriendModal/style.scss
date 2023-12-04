@@ -1,0 +1,15 @@
+@import '../../style/index.scss';
+
+.add-friend-modal {
+  .input-container {
+    margin: 5px 0 20px;
+  }
+
+  .add-btn {
+    background-color: $primary-4;
+  }
+
+  .add-btn:focus,.add-btn:hover {
+    background-color: $primary-3;
+  }
+}

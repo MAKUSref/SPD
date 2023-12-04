@@ -1,20 +1,29 @@
-import { IconButton } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
-import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
+import { useGetSelfFriendsQuery } from "../../redux/api/userApi";
+import "./style.scss";
+import AddFriendModal from "../../components/AddFriendModal";
 
 const FriendsPage = () => {
+  const { data: selfFriends } = useGetSelfFriendsQuery();
+
   return (
     <>
       <PageHeader
         title="Friends"
         rightSection={
           <div>
-            <IconButton color="inherit">
-              <PersonAddRoundedIcon />
-            </IconButton>
+            <AddFriendModal />
           </div>
         }
       />
+      <div className="friend-page">
+        {!selfFriends?.length && (
+          <p className="description">
+            You have no friends right now. But calm down maybe some day you meet
+            some :{")"}
+          </p>
+        )}
+      </div>
     </>
   );
 };

@@ -26,4 +26,16 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), VitePWA(manifestForPlugin)],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080'
+      },
+
+      '/api/ping': {
+        target: 'http://localhost:8080',
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
+  }
 });

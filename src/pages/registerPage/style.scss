@@ -1,0 +1,24 @@
+@import '../../style/index.scss';
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100dvh;
+
+  .form {
+    margin-top: -120px;
+  }
+
+  .description {
+    color: $neutral-6;
+  }
+
+  .submit-container {
+    margin-bottom: -120px;
+
+    .submit-btn {
+      background-color: $primary-3;
+    }
+  }
+}

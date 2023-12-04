@@ -1,0 +1,11 @@
+@import "../../style/index.scss";
+
+.friend-page {
+  margin-top: 50px;
+
+  .description {
+    padding: 40px 0;
+    text-align: center;
+    color: $neutral-6;
+  }
+}
