@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import beerSvg from "../../assets/beer.svg";
-import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import { useGetSelfCounterQuery, useGetSelfQuery } from "../../redux/api/userApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/session/sessionSlice";
@@ -47,12 +47,12 @@ const ProfilePage = () => {
             <span className="number">{selfCounter ?? 0}</span>
           </div>
           <div className="single-score">
-            <EmojiEventsRoundedIcon
+            <LocalFireDepartmentIcon
               color="inherit"
               fontSize="inherit"
-              className="icon"
+              className={`icon ${!selfInfo?.streak && 'grayscale-icon'}`}
             />
-            <span className="number">8</span>
+            <span className="number">{selfInfo?.streak}</span>
           </div>
         </div>
 
