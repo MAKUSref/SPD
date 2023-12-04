@@ -5,6 +5,7 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import profileImg from "../../assets/profile.jpg";
 import beerSvg from "../../assets/beer.svg";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import "./style.scss";
 import { useGetSelfCounterQuery, useGetSelfQuery } from "../../redux/api/userApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -50,12 +51,12 @@ const ProfilePage = () => {
             <span className="number">{selfCounter ?? 0}</span>
           </div>
           <div className="single-score">
-            <EmojiEventsRoundedIcon
+            <LocalFireDepartmentIcon
               color="inherit"
               fontSize="inherit"
-              className="icon"
+              className={`icon ${!selfInfo?.streak && 'grayscale-icon'}`}
             />
-            <span className="number">8</span>
+            <span className="number">{selfInfo?.streak}</span>
           </div>
         </div>
 
