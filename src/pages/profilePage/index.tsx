@@ -1,14 +1,13 @@
+import "./style.scss";
 import { IconButton } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
-import profileImg from "../../assets/profile.jpg";
 import beerSvg from "../../assets/beer.svg";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
-import "./style.scss";
 import { useGetSelfCounterQuery, useGetSelfQuery } from "../../redux/api/userApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/session/sessionSlice";
+import EditStatusModal from "../../components/EditStatusModal";
 
 const ProfilePage = () => {
   const { data: selfInfo } = useGetSelfQuery();
@@ -27,9 +26,7 @@ const ProfilePage = () => {
         title="Profile"
         rightSection={
           <div>
-            <IconButton color="inherit" className="edit-btn">
-              <CreateRoundedIcon />
-            </IconButton>
+            <EditStatusModal />
             <IconButton color="inherit" className="" onClick={handleLogout}>
               <LogoutRoundedIcon />
             </IconButton>
@@ -39,10 +36,10 @@ const ProfilePage = () => {
       <div className="profile-page">
         <div className="avatar-container">
           <div className="avatar-bg">
-            <img src={session.picture ?? profileImg} />
+            <img src={selfInfo?.pic ?? session.picture} />
           </div>
         </div>
-        <div className="user-id">{selfInfo?.firstName} {selfInfo?.lastName}</div>
+        <div className="user-status">{selfInfo?.status ?? "no status"}</div>
         <div className="user-name">{selfInfo?.username}</div>
         <div className="user-best-scores">
           <div className="single-score">

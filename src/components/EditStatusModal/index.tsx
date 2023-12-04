@@ -6,35 +6,32 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
+import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { useState } from "react";
 import "./style.scss";
 import { useForm } from "react-hook-form";
-import { useAddFriendMutation } from "../../redux/api/userApi";
+import { useChangeStatusMutation, useGetSelfQuery } from "../../redux/api/userApi";
 
 interface EditStatusSchema {
-  username: string;
+  status: string;
 }
 
 const EditStatusModal = () => {
+  const { data: selfInfo } = useGetSelfQuery();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
-  const { register, handleSubmit } = useForm<AddFriendSchema>();
+  const { register, handleSubmit } = useForm<EditStatusSchema>();
 
-  const [addFriend] = useAddFriendMutation();
+  const [changeStatus] = useChangeStatusMutation();
 
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
 
-  const onSubmit = (data: AddFriendSchema) => {
+  const onSubmit = (data: EditStatusSchema) => {
     setError(undefined);
 
-    if (!data.username) {
-      return;
-    }
-
-    addFriend(data.username)
+    changeStatus(data.status)
       .unwrap()
       .then(() => setOpen(false))
       .catch((err) => {
@@ -45,17 +42,18 @@ const EditStatusModal = () => {
 
   return (
     <>
-      <IconButton color="inherit" onClick={handleOpen}>
-        <PersonAddRoundedIcon />
-      </IconButton>
+      <IconButton color="inherit" className="edit-btn" onClick={handleOpen}>
+        <CreateRoundedIcon />
+      </IconButton> 
       <Dialog className="add-friend-modal" open={open} onClose={handleClose}>
-        <DialogTitle>Add Friend</DialogTitle>
+        <DialogTitle>Change status</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-container">
               <TextField
-                {...register("username")}
-                label="Friend username"
+                {...register("status")}
+                defaultValue={selfInfo?.status}
+                label="Current status"
                 size="small"
                 error={!!error}
                 helperText={error}
@@ -68,7 +66,7 @@ const EditStatusModal = () => {
               variant="contained"
               type="submit"
             >
-              Add
+              Change
             </Button>
           </form>
         </DialogContent>
