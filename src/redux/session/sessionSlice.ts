@@ -23,6 +23,9 @@ const sessionSlice = createSlice({
         picture: string;
       };
 
+      console.log(jwt_decode(action.payload));
+      
+
       state.username = name;
       state.picture = picture;
     },

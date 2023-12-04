@@ -32,12 +32,15 @@ const RegisterPage = () => {
       return;
     }
 
-    registerUsername(data.username).unwrap().then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log('err', err);
-      setNicknameError('* Given username already in use.');
-    })
+    registerUsername(data.username)
+      .unwrap()
+      .then(() => {
+        navigate(PATH.HOME);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setNicknameError("* Given username already in use.");
+      });
   };
 
   useEffect(() => {

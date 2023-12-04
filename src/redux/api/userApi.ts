@@ -1,14 +1,15 @@
 import { baseApi } from "./baseApi";
 
 interface User {
-  sub: string,
-  username?: string,
-  firstName?: string,
-  lastName?: string,
-  counter: number,
-  lastSip?: number,
-  streak: number,
-  status?: string
+  sub: string;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  counter: number;
+  lastSip?: number;
+  streak: number;
+  status?: string;
+  pic?: string;
 }
 
 interface Friend {
@@ -36,7 +37,7 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     getSelfFriends:builder.query<Friend[], void>({
-      query: () => '/user/counter',
+      query: () => '/user/friends',
       providesTags: ['user']
     }),
     
@@ -56,6 +57,33 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['user']
     }),
+
+    addFriend: builder.mutation<unknown, string>({
+      query: (username) => ({
+        url: '/user/friends',
+        method: 'POST',
+        body: { username }
+      }),
+      invalidatesTags: ['user']
+    }),
+
+    removeFriend: builder.mutation<unknown, string>({
+      query: (username) => ({
+        url: '/user/friends',
+        method: 'DELETE',
+        body: { username }
+      }),
+      invalidatesTags: ['user']
+    }),
+
+    changeStatus: builder.mutation<unknown, string>({
+      query: (status) => ({
+        url: '/user/status',
+        method: 'POST',
+        body: { status }
+      }),
+      invalidatesTags: ['user']
+    }),
   })
 });
 
@@ -66,4 +94,7 @@ export const {
   useGetSelfFriendsQuery,
   useRegisterUsernameMutation,
   useIncrementCounterMutation,
+  useAddFriendMutation,
+  useChangeStatusMutation,
+  useRemoveFriendMutation,
 } = userApi;

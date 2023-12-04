@@ -12,11 +12,11 @@ import "./style.scss";
 import { useForm } from "react-hook-form";
 import { useAddFriendMutation } from "../../redux/api/userApi";
 
-interface AddFriendSchema {
+interface EditStatusSchema {
   username: string;
 }
 
-const AddFriendModal = () => {
+const EditStatusModal = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
@@ -77,4 +77,4 @@ const AddFriendModal = () => {
   );
 };
 
-export default AddFriendModal;
+export default EditStatusModal;

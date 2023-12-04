@@ -1,11 +1,49 @@
 @import "../../style/index.scss";
 
 .friend-page {
-  margin-top: 50px;
+  margin-top: 70px;
 
   .description {
     padding: 40px 0;
     text-align: center;
     color: $neutral-6;
+  }
+
+  .friend-container {
+    background-color: $neutral-4;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    .username {
+      display: flex;
+      align-items: center;
+
+      .friend-counter {
+        margin-left: 6px;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 18px;
+          margin: 0 2px 4px;
+        }
+      }
+    }
+
+    .sub-title {
+      color: $neutral-6;
+      font-size: 14px;
+    }
+
+    .friend-avatar {
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 }
